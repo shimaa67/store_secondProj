@@ -3,7 +3,7 @@
     <div class="py-3">
         <form action="{{ url('products/update/' . $products->id) }}" method="post">
             @csrf
-            @method('patch')
+            @method('PUT')
             <div class="mb-3">
                 <label for="nameFormControlInput" class="form-label">اسم المنتج</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ $products->name }}">

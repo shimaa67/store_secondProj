@@ -4,37 +4,41 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-//Dashboard Routes
-// products
-Route::resource('products', ProductsController::class);
-Route::get('products', [ProductsController::class, 'index']);
-Route::get('products/create', [ProductsController::class, 'create']);
-Route::post('products/store', [ProductsController::class, 'store']);
-Route::get('products/edit/{id}', [ProductsController::class, 'edit']);
-Route::get('products/delete/{id}', [ProductsController::class, 'destroy']);
-Route::delete('products/update/{id}', [ProductsController::class, 'update']);
 
-// Ctegories
 
-Route::get('categories', [CategoryController::class, 'index']);
-Route::get('categories/create', [CategoryController::class, 'create']);
-Route::post('categories/store', [CategoryController::class, 'store']);
-Route::get('categories/edit/{id}', [CategoryController::class, 'edit']);
-Route::get('categories/update/{id}', [CategoryController::class, 'update']);
-Route::delete('categories/delete/{id}', [CategoryController::class, 'destroy']);
+Route::get('products', [ProductsController::class, 'index'])->name('products.index');
+Route::get('products/create', [ProductsController::class, 'create'])->name('products.create');
+Route::post('products/store', [ProductsController::class, 'store'])->name('products.store');
+Route::get('products/edit/{id}', [ProductsController::class, 'edit'])->name('products.edit');
+Route::put('products/update/{id}', [ProductsController::class, 'update'])->name('products.update');
+Route::delete('products/delete/{id}', [ProductsController::class, 'destroy'])->name('products.destroy');
 
-// Front Page Routes
 
-Route::get('/', [FrontController::class, 'index']);
+Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('categories/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('categories/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('categories/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('categories/delete/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+
+Route::get('/', [FrontController::class, 'index'])->name('front.index');
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return redirect('/login');
+})->name('logout');
+
+Route::get('/home', function () {
+    return view('home'); 
+})->name('home');
+

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ar" dir="rtl" data-bs-theme="auto">
 
@@ -100,10 +101,11 @@
     </style>
 
 
+
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets/dist/css/carousel.rtl.css') }}" rel="stylesheet">
 </head>
-
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
@@ -202,6 +204,7 @@
             </div>
         </nav>
     </header>
+
 
     <main>
         @yield('content')
