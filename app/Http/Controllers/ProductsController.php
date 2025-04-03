@@ -13,7 +13,7 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $products = products::where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate(2 );
+        $products = products::paginate(2 );
         // $products = Products::with('category')->get();
         return view('admin.products.index', compact('products'));
 
@@ -42,11 +42,7 @@ class ProductsController extends Controller
         $products->price = $request->price;
         $products->category_id = $request->category;
         $products->description = $request->description;
-        $products->user_id = Auth::id();
-
-
         $products->save();
-
         return redirect()->back();
     }
     /**

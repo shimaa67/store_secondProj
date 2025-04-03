@@ -30,8 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li><a href="{{url('/')}}"> My store</li>
-
+                        <li><a href="{{url('/')}}"> My store</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -55,13 +54,14 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                    <form action="{{ route('logout') }}" method="POST">
+                                <div class="dropdown-menu dropdown-menu-end" style="width: 150px;">
+                                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-danger">Logout</button>
+                                        <button type="submit" class="text-black d-flex align-items-center justify-content-center w-100"
+                                            style="border: none; background: none; text-decoration: none; padding: 10px; font-size: 15px;">
+                                            Logout
+                                        </button>
                                     </form>
-
                                 </div>
                             </li>
                         @endguest

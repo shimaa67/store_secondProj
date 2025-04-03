@@ -35,7 +35,7 @@
                         <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
                     </form>
                     <div class="mt-3 text-center">
-                        <a href="#" class="text-decoration-none text-primary">Forgot your password?</a>
+                        <a href="{{ route('password.request') }}" class="text-decoration-none text-primary">Forgot your password?</a>
                     </div>
                     <div class="mt-3 text-center">
                         <a href="{{ route('register') }}" class="btn btn-outline-secondary w-100">Sign Up</a>
